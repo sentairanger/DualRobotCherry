@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: cherry-dualrobot
+  name: cherry-dualrobot
+  namespace: default 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cherry-dualrobot
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: cherry-dualrobot
+    spec:
+      containers:
+      - image: linuxrobotgeek/cherry-dualrobot:v1.0.0
+        imagePullPolicy: IfNotPresent
+        name: cherry-dualrobot
+        resources:
+          requests:
+            cpu: 50m
+            memory: 256Mi
