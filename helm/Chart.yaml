@@ -1,0 +1,10 @@
+apiVersion: v1
+name: cherry-dualrobot
+description: Run the cherry robot app
+keywords:
+- cherry
+- dualrobot
+version: 1.0.0
+maintainers:
+- name: Edgardo 
+  email: ed2point0@gmail.com
