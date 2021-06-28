@@ -10,6 +10,6 @@ spec:
   project: default
   source:
     path: argocd/manifests
-    repoURL: https://github.com/sentairanger/DualRobotPyramid
+    repoURL: https://github.com/sentairanger/DualRobotCherry
     targetRevision: HEAD
   syncPolicy: {}
