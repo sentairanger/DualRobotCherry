@@ -1,11 +1,14 @@
+# Import libraries
 import cherrypy
 import logging
 from gpiozero import OutputDevice, PWMOutputDevice, LED, AngularServo
 from gpiozero.pins.pigpio import PiGPIOFactory
 
+# import factories
 factory = PiGPIOFactory(host='192.168.0.22')
 factory2 = PiGPIOFactory(host='192.168.0.21')
 
+# Define motor pins, leds and servos
 en_1 = PWMOutputDevice(12, pin_factory=factory)
 en_2 = PWMOutputDevice(26, pin_factory=factory)
 motor_in1 = OutputDevice(13,  pin_factory = factory)
@@ -24,8 +27,10 @@ torvalds_eye = LED(25, pin_factory=factory2)
 angular_servo = AngularServo(22, min_angle=-90, max_angle=90, pin_factory=factory)
 angular_servo2 = AngularServo(23, min_angle=-90, max_angle=90, pin_factory=factory)
 
+#Define class and functions for movement, servo movement and pwm control
 class DualRobot(object):
     @cherrypy.expose
+    # main index file
     def index(self):
         return open("dual_cherry.html")
     @cherrypy.expose
@@ -126,6 +131,7 @@ class DualRobot(object):
         return open("dual_cherry.html")
 
 if __name__ == '__main__':
+    # log everything into the app.log file
     logging.basicConfig(filename="app.log", level=logging.DEBUG)
     cherrypy.quickstart(DualRobot())
 
